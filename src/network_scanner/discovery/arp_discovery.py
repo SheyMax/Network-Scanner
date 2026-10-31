@@ -11,7 +11,7 @@ def arp_disc(ip, timeout):
     undetected = {}
 
     for sent, received in answered:
-        undetected[received[ARP].psrc] = {"mac" : received[ARP].hwsrc,
+        detected[received[ARP].psrc] = {"mac" : received[ARP].hwsrc,
                                    "protocol" : "ARP"}
 
     for result in unanswered:
