@@ -11,7 +11,7 @@ def icmp_discover(ip, timeout):
     undetected = {}
 
     for sent, received in answered:
-        if received[ICMP].type == 0:
+        if received[ICMP].type == 0: # Verification ICMP echo reply
             detected[received[IP].src] = {"protocol" : "ICMP"}
 
     for result in unanswered:
