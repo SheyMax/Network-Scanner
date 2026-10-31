@@ -4,6 +4,7 @@ def arp_disc(ip, timeout):
 
     request = ARP(op=1, pdst=ip) # op=1 -> ARP request
     frame = Ether(dst="ff:ff:ff:ff:ff:ff") / request
+    
     answered, unanswered = srp(frame, verbose=0, timeout=timeout)
 
     detected = {}
@@ -11,9 +12,9 @@ def arp_disc(ip, timeout):
 
     for sent, received in answered:
         detected[received.psrc] = {"mac" : received.hwsrc,
-                                   "protocol" : "arp"}
+                                   "protocol" : "ARP"}
 
-    for packet in unanswered:
-        not_detected[packet.pdst] = {"protocol" : "arp"}
+    for result in unanswered:
+        not_detected[result.pdst] = {"protocol" : "ARP"}
 
     return (detected, not_detected)
