@@ -1,6 +1,6 @@
 from scapy.all import TCP, IP, sr1, send, sr
 
-def tcp_connect_scan(port, ip, timeout):
+def tcp_connect_scan(ip, port, timeout):
 
     request = TCP(dport=port, flags="S")
     packet = IP(dst=ip) / request
