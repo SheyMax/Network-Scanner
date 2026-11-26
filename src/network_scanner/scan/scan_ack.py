@@ -6,7 +6,7 @@ def ack_scan(port, ip, timeout):
     packet = IP(dst=ip) / request
     answer = sr1(packet, timeout=timeout, verbose=0)
 
-    if answer == None:
+    if answer is None:
         return {port : "filtered"}
 
     if answer.haslayer(TCP):
